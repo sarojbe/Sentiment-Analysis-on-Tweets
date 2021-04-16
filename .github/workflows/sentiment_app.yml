@@ -30,6 +30,7 @@ jobs:
         with:
           image: devfacts/private_repo_devf
           tags: v1, latest
+          dockerfile: Dockerfile.ci
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
