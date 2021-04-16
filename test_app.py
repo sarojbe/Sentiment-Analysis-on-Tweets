@@ -1,25 +1,16 @@
 from flask import Flask, render_template, url_for
-import nlp_controller
-
-app = Flask(__name__)
 
 
-@app.route("/")
-@app.route("/home")
-def home():
-    return render_template("base.html", title="home")
+def test_home():
+    """
+    GIVEN a Flask application configured for testing
+    WHEN the '/' page is is posted to (POST)
+    THEN check that a '405' status code is returned
+    """
+    app = Flask(__name__)
 
-
-@app.route("/about")
-def about():
-    return render_template("base.html", title="about")
-
-
-@app.route("/analyzer")
-def analyzer():
-    filterdata = nlp_controller.sampleDataParse()
-    return render_template("parsed_data.html", filterdata=filterdata)
-
-
-if __name__ == "__main__":
-    app.run()
+    # Create a test client using the Flask application configured for testing
+    with app.test_client() as test_client:
+        response = test_client.get("/")
+        assert response.status_code == 200
+        assert b"Welcome to the app world!" not in response.data
