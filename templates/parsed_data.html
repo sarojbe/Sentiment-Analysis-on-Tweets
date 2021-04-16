@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    {% for line in filterdata %}
+    {{ line| safe }}
+    <br>
+    <br>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
